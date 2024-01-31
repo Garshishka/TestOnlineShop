@@ -21,7 +21,9 @@
         <item name="textEndPadding">@dimen/text_padding</item>
         <item name="fontFamily">@font/sf_pro_display_medium</item>
         <item name="chipBackgroundColor">@color/chip_select_color</item>
-        <item name="closeIcon">@drawable/icon_delete_text</item>
+        <item name="android:textColor">"@color/chip_text_select_color"</item>
+        <item name="closeIconTint">@color/white</item>
+        <item name="closeIcon">@drawable/icon_delete_filter</item>
         <item name="closeIconEnabled">true</item>
     </style>
 </resources>
