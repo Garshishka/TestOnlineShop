@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
+import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentRegistrationBinding
 import ru.tinkoff.decoro.MaskImpl
@@ -38,6 +39,7 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_registration))
         setUpUi()
     }
 

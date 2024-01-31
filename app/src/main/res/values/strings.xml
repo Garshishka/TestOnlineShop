@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Test Online Shop</string>
+    <string name="fragment_registration">Вход</string>
+    <string name="fragment_catalogue">Каталог</string>
     <string name="text_input_name">Имя</string>
     <string name="text_input_surname">Фамилия</string>
     <string name="input_text_phone">Телефон</string>

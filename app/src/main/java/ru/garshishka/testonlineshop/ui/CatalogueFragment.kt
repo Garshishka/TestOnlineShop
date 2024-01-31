@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
+import ru.garshishka.testonlineshop.MainActivity
+import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentCatalogueBinding
 
 class CatalogueFragment : Fragment() {
@@ -27,6 +29,8 @@ class CatalogueFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_catalogue))
 
         binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
             if (checkedIds.isNotEmpty()) {
