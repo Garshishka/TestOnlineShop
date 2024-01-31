@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="ru.garshishka.testonlineshop.RegistrationFragment"
+        android:name="ru.garshishka.testonlineshop.ui.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" />
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catalogueFragment"
+        android:name="ru.garshishka.testonlineshop.ui.CatalogueFragment"
+        android:label="fragment_catalogue"
+        tools:layout="@layout/fragment_catalogue" />
 </navigation>
