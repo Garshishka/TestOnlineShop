@@ -15,4 +15,13 @@
         <item name="android:fontFamily">@font/sf_pro_display_medium</item>
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="ChipFilter" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textSize">14sp</item>
+        <item name="textStartPadding">@dimen/text_padding</item>
+        <item name="textEndPadding">@dimen/text_padding</item>
+        <item name="fontFamily">@font/sf_pro_display_medium</item>
+        <item name="chipBackgroundColor">@color/chip_select_color</item>
+        <item name="closeIcon">@drawable/icon_delete_text</item>
+        <item name="closeIconEnabled">true</item>
+    </style>
 </resources>

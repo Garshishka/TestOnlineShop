@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CatalogueFragment"
+    android:background="@color/dark_blue">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/default_margin_16dp">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:chipSpacingHorizontal="@dimen/chip_spacing">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_all"
+                style="@style/ChipFilter"
+                app:closeIconEnabled="true"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_face"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_face"
+                style="@style/ChipFilter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_body"
+                style="@style/ChipFilter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_suntan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_suntan"
+                style="@style/ChipFilter"
+                />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_mask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_mask"
+                style="@style/ChipFilter"
+                />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
