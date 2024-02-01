@@ -16,4 +16,7 @@
     <dimen name="size_text_title2">14sp</dimen>
     <dimen name="discount_width">34dp</dimen>
     <dimen name="discount_height">16dp</dimen>
+    <dimen name="small_indicator_radius_2dp">2dp</dimen>
+    <dimen name="small_indicator_gap_4dp">4dp</dimen>
+    <dimen name="size_icon">24dp</dimen>
 </resources>
