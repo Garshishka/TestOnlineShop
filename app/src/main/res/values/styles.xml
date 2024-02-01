@@ -4,19 +4,18 @@
         <item name="android:layout_marginHorizontal">@dimen/default_margin_16dp</item>
         <item name="android:paddingHorizontal">@dimen/default_margin_16dp</item>
         <item name="android:background">@drawable/text_input_bg</item>
-        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
         <item name="android:textColorHint">@color/grey</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/size_text_title1</item>
     </style>
     <style name="AppButton" parent="@style/Widget.Material3.Button">
         <item name="android:layout_marginHorizontal">@dimen/default_margin_16dp</item>
         <item name="android:background">@drawable/button_bg</item>
         <item name="backgroundTint">@color/button_state_colors</item>
         <item name="android:fontFamily">@font/sf_pro_display_medium</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/size_text_title2</item>
     </style>
     <style name="ChipFilter" parent="@style/Widget.MaterialComponents.Chip.Choice">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/size_text_title2</item>
         <item name="textStartPadding">@dimen/text_padding</item>
         <item name="textEndPadding">@dimen/text_padding</item>
         <item name="fontFamily">@font/sf_pro_display_medium</item>

@@ -8,4 +8,12 @@
     <dimen name="chip_height">28dp</dimen>
     <dimen name="chip_spacing">6dp</dimen>
     <dimen name="text_padding">12dp</dimen>
+    <dimen name="button_add_size">32dp</dimen>
+    <dimen name="text_margin_6dp">6dp</dimen>
+    <dimen name="size_text_element">9sp</dimen>
+    <dimen name="size_text_caption">10sp</dimen>
+    <dimen name="size_text_title1">16sp</dimen>
+    <dimen name="size_text_title2">14sp</dimen>
+    <dimen name="discount_width">34dp</dimen>
+    <dimen name="discount_height">16dp</dimen>
 </resources>

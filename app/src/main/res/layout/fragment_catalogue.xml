@@ -28,7 +28,6 @@
             app:simpleItems="@array/sort"
             android:inputType="none"
             android:textSize="14sp"
-            android:fontFamily="@font/sf_pro_display_regular"
             android:padding="0dp"
             />
 
@@ -44,8 +43,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
         android:text="@string/button_filters"
         app:icon ="@drawable/icon_filter"
-        android:fontFamily="@font/sf_pro_display_regular"
-        android:textSize="14sp"
+        android:textSize="@dimen/size_text_title2"
         android:textAllCaps="false"
         android:textColor="@color/dark_grey"
         app:iconTint = "@color/black"
