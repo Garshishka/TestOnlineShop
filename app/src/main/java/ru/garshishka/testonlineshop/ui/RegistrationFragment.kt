@@ -13,10 +13,13 @@ import com.google.android.material.textfield.TextInputEditText
 import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentRegistrationBinding
+import ru.garshishka.testonlineshop.utils.getStringFromPrefs
+import ru.garshishka.testonlineshop.utils.saveStringToPrefs
 import ru.tinkoff.decoro.MaskImpl
-import ru.tinkoff.decoro.slots.PredefinedSlots
+import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
+
 
 class RegistrationFragment : Fragment() {
 
@@ -39,8 +42,17 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkUserLogin()
         (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_registration))
         setUpUi()
+    }
+
+    private fun checkUserLogin() {
+        if(getStringFromPrefs(requireContext(),"name") != null &&
+            getStringFromPrefs(requireContext(),"surname")!=null&&
+            getStringFromPrefs(requireContext(),"phone") !=null ){
+            findNavController().navigate(R.id.action_registrationFragment_to_catalogueFragment)
+        }
     }
 
     private fun setUpUi() {
@@ -71,13 +83,17 @@ class RegistrationFragment : Fragment() {
                 }
             })
 
-            val watcher: FormatWatcher =
-                MaskFormatWatcher(MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER))
-            watcher.installOn(inputPhone)
+            val slots = UnderscoreDigitSlotsParser().parseSlots("+7 ___ ___-__-__")
+            val formatWatcher: FormatWatcher = MaskFormatWatcher(MaskImpl.createTerminated(slots))
+            formatWatcher.installOn(inputPhone)
+
+
             inputPhone.addTextChangedListener { checkButtonStatus() }
 
             enterButton.setOnClickListener {
-                //TODO Save inputted
+                saveStringToPrefs(requireContext(),"name",inputName.text.toString())
+                saveStringToPrefs(requireContext(),"surname",inputSurname.text.toString())
+                saveStringToPrefs(requireContext(),"phone",inputPhone.text.toString())
                 findNavController().navigate(R.id.action_registrationFragment_to_catalogueFragment)
             }
         }
@@ -97,7 +113,7 @@ class RegistrationFragment : Fragment() {
         binding.apply {
             enterButton.isEnabled = nameFilledRight && surnameFilledRight
                     && !inputName.text.isNullOrBlank() && !inputSurname.text.isNullOrBlank()
-                    && inputPhone.text?.length == 18
+                    && inputPhone.text?.length == 16
         }
     }
 }

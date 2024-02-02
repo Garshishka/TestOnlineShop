@@ -1,10 +1,11 @@
-package ru.garshishka.testonlineshop
+package ru.garshishka.testonlineshop.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ru.garshishka.testonlineshop.R
 
 class ProductFragment : Fragment() {
 
