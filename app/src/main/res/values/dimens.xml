@@ -25,4 +25,5 @@
     <dimen name="size_text_large_title">20sp</dimen>
     <dimen name="size_text">12sp</dimen>
     <dimen name="size_text_price">24sp</dimen>
+    <dimen name="menu_margin_43dp">43dp</dimen>
 </resources>

@@ -36,7 +36,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@id/menu"/>
+
+<LinearLayout
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/text_margin_6dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:visibility="gone"
+    app:flow_horizontalGap="43dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/fragment_container"
+    >
+
+    <Button
+        android:id="@+id/button_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MenuButton"
+        android:text="@string/button_menu_main"
+        android:textColor="@color/pink"
+        app:icon = "@drawable/icon_main"
+        app:iconTint = "@color/pink"
+        />
+    <Button
+        android:id="@+id/button_catalogue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MenuButton"
+        android:text="@string/button_menu_catalogue"
+        app:icon = "@drawable/icon_catalogue"
+        />
+    <Button
+        android:id="@+id/button_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MenuButton"
+        android:text="@string/button_menu_cart"
+        app:icon = "@drawable/icon_cart"
+        />
+    <Button
+        android:id="@+id/button_discounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MenuButton"
+        android:text="@string/button_menu_discounts"
+        app:icon = "@drawable/icon_discounts"
+        />
+    <Button
+        android:id="@+id/button_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MenuButton"
+        android:text="@string/button_menu_profile"
+        android:layout_marginEnd="0dp"
+        app:icon = "@drawable/icon_profile"
+        />
+</LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout >

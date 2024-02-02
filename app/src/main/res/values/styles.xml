@@ -36,4 +36,14 @@
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetRight">0dp</item>
     </style>
+    <style name="MenuButton" parent="@style/Widget.Material3.Button.TextButton.Icon">
+        <item name="android:padding">0dp</item>
+        <item name="android:minWidth">32dp</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:textSize">@dimen/size_text_caption</item>
+        <item name="iconGravity">top</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconTint">@color/dark_grey</item>
+        <item name="android:layout_marginEnd">@dimen/menu_margin_43dp</item>
+    </style>
 </resources>
