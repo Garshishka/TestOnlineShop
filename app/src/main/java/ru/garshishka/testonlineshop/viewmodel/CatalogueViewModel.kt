@@ -1,24 +1,29 @@
 package ru.garshishka.testonlineshop.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import ru.garshishka.testonlineshop.dto.CatalogueItem
-import ru.garshishka.testonlineshop.dto.Items
+import ru.garshishka.testonlineshop.repository.CatalogueRepository
+import javax.inject.Inject
 
-class CatalogueViewModel : ViewModel() {
-
-    private val _catalogueItems = MutableLiveData<List<CatalogueItem>>()
+@HiltViewModel
+class CatalogueViewModel @Inject constructor(
+    private val repository: CatalogueRepository,
+): ViewModel() {
     val catalogueItems : LiveData<List<CatalogueItem>>
-        get() = _catalogueItems
-    fun parseJson(jsonString: String){
-        try {
-            val gson = Gson()
-            val yourDataObject = gson.fromJson(jsonString, Items::class.java)
+        get() = repository.foodData
 
-            _catalogueItems.value = yourDataObject.items
-        } catch (e: Exception) {
+    init {
+        load()
+    }
+
+    private fun load() = viewModelScope.launch {
+        try {
+            repository.downloadAll()
+        } catch (e: Exception){
             e.printStackTrace()
         }
     }

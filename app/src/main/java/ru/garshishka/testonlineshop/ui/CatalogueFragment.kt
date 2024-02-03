@@ -1,6 +1,5 @@
 package ru.garshishka.testonlineshop.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +8,14 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentCatalogueBinding
 import ru.garshishka.testonlineshop.viewholder.CatalogueItemAdapter
 import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
+@AndroidEntryPoint
 class CatalogueFragment : Fragment() {
     private var _binding: FragmentCatalogueBinding? = null
     private val viewModel : CatalogueViewModel by activityViewModels()
@@ -31,7 +30,7 @@ class CatalogueFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCatalogueBinding.inflate(inflater, container, false)
-        viewModel.parseJson(readJsonFile(requireContext(),R.raw.items))
+        //viewModel.parseJson(readJsonFile(requireContext(),R.raw.items))
         return binding.root
     }
 
@@ -70,16 +69,4 @@ class CatalogueFragment : Fragment() {
         }
     }
 
-}
-
-fun readJsonFile(context: Context, resourceId: Int): String {
-    val inputStream = context.resources.openRawResource(resourceId)
-    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
-    val stringBuilder = StringBuilder()
-
-    bufferedReader.useLines { lines ->
-        lines.forEach { stringBuilder.append(it) }
-    }
-
-    return stringBuilder.toString()
 }

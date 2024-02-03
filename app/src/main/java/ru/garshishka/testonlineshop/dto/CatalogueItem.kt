@@ -12,7 +12,7 @@ data class CatalogueItem(
     @SerializedName("price")
     val price: Price,
     @SerializedName("feedback")
-    val feedback: Feedback,
+    val feedback: Feedback?,
     @SerializedName("tags")
     val tags: List<String>,
     @SerializedName("available")

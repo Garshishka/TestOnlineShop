@@ -3,6 +3,7 @@ package ru.garshishka.testonlineshop.viewholder
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -28,18 +29,22 @@ class CatalogueItemViewHolder(
                 append(" ")
                 append(item.price.unit)
             }
-            discountAmount.text =  buildString {
+            discountAmount.text = buildString {
                 append("-")
                 append(item.price.discount.toString())
                 append("%")
             }
             title.text = item.title
             subtitle.text = item.subtitle
-            rating.text = item.feedback.rating.toString()
-            ratingAmount.text = buildString {
-                append("(")
-                append(item.feedback.count.toString())
-                append(")")
+            rating.isVisible = item.feedback != null
+            ratingAmount.isVisible = item.feedback != null
+            item.feedback?.let {
+                rating.text = it.rating.toString()
+                ratingAmount.text = buildString {
+                    append("(")
+                    append(it.count.toString())
+                    append(")")
+                }
             }
             val images = getImageArrayForItem(item.id)
             productImage.adapter = ImagePagerAdapter(itemView.context, images)
