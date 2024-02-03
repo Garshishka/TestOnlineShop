@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         val destinationId = when (destination) {
             MenuDestination.MAIN -> R.id.action_global_mainFragment
             MenuDestination.CATALOGUE -> R.id.action_global_catalogueFragment
-            MenuDestination.PROFILE -> TODO()
+            MenuDestination.PROFILE -> R.id.action_global_profileFragment
             MenuDestination.CART -> R.id.action_global_cartFragment
             MenuDestination.DISCOUNTS -> R.id.action_global_discountsFragment
         }

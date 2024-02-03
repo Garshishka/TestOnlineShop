@@ -5,6 +5,7 @@
     <string name="fragment_catalogue">Каталог</string>
     <string name="fragment_cart">Корзина</string>
     <string name="fragment_discounts">Акции</string>
+    <string name="fragment_profile">Личный кабинет</string>
     <string name="text_input_name">Имя</string>
     <string name="text_input_surname">Фамилия</string>
     <string name="input_text_phone">Телефон</string>
@@ -27,4 +28,10 @@
     <string name="main_fragment_placeholder">Здесь раздел "Главная"</string>
     <string name="cart_fragment_placeholder">Здесь раздел "Корзина"</string>
     <string name="discounts_fragment_placeholder">Здесь раздел "Акции"</string>
+    <string name="button_exit">Выйти</string>
+    <string name="label_favorites">Избранное</string>
+    <string name="label_shops">Магазины</string>
+    <string name="label_feedback">Обратная связь</string>
+    <string name="label_legal">Оферта</string>
+    <string name="label_refund">Возврат товара</string>
 </resources>

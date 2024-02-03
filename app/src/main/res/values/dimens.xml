@@ -26,4 +26,5 @@
     <dimen name="size_text">12sp</dimen>
     <dimen name="size_text_price">24sp</dimen>
     <dimen name="menu_margin_43dp">43dp</dimen>
+    <dimen name="size_profile_button_49dp">49dp</dimen>
 </resources>

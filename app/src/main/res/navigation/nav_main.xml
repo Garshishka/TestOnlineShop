@@ -43,4 +43,9 @@
         android:id="@+id/discountsFragment"
         android:name="ru.garshishka.testonlineshop.ui.DiscountsFragment"
         android:label="DiscountsFragment" /><action android:id="@+id/action_global_cartFragment" app:destination="@id/cartFragment"/><action android:id="@+id/action_global_discountsFragment" app:destination="@id/discountsFragment"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.garshishka.testonlineshop.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" /><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/>
 </navigation>

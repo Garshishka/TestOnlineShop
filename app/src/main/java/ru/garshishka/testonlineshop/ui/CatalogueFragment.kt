@@ -22,6 +22,7 @@ import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
 @AndroidEntryPoint
 class CatalogueFragment : Fragment() {
     private var _binding: FragmentCatalogueBinding? = null
+    private val binding get() = _binding!!
     private val viewModel : CatalogueViewModel by activityViewModels()
 
     private val userInteractionListener = object : UserInteractionListener{
@@ -31,10 +32,7 @@ class CatalogueFragment : Fragment() {
     }
 
     private val adapter = CatalogueItemAdapter(userInteractionListener)
-    private val binding get() = _binding!!
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
