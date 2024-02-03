@@ -13,7 +13,7 @@ import javax.inject.Singleton
 interface RepositoryModule {
     @Singleton
     @Binds
-    fun bindsFoodRepository(
-        foodRepositoryImpl: CatalogueRepositoryImpl
+    fun bindsCatalogueRepository(
+        catalogueRepositoryImpl: CatalogueRepositoryImpl
     ): CatalogueRepository
 }

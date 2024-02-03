@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.garshishka.testonlineshop.dto.CatalogueItem
 import ru.garshishka.testonlineshop.repository.CatalogueRepository
+import ru.garshishka.testonlineshop.utils.SortingCriteria
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,7 +15,7 @@ class CatalogueViewModel @Inject constructor(
     private val repository: CatalogueRepository,
 ): ViewModel() {
     val catalogueItems : LiveData<List<CatalogueItem>>
-        get() = repository.foodData
+        get() = repository.catalogueItems
 
     init {
         load()
@@ -26,6 +27,10 @@ class CatalogueViewModel @Inject constructor(
         } catch (e: Exception){
             e.printStackTrace()
         }
+    }
+
+    fun changeSort(sortingCriteria: SortingCriteria) = viewModelScope.launch{
+        repository.sortCatalogue(sortingCriteria)
     }
 
 }

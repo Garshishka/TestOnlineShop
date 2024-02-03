@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentCatalogueBinding
+import ru.garshishka.testonlineshop.utils.SortingCriteria
 import ru.garshishka.testonlineshop.viewholder.CatalogueItemAdapter
 import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
 
@@ -30,7 +31,6 @@ class CatalogueFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCatalogueBinding.inflate(inflater, container, false)
-        //viewModel.parseJson(readJsonFile(requireContext(),R.raw.items))
         return binding.root
     }
 
@@ -61,11 +61,24 @@ class CatalogueFragment : Fragment() {
                     }
                 }
             }
+            sortSpinner.setText(getString(R.string.sort_popular),false)
+            sortSpinner.setOnItemClickListener { _, _, _, l ->
+                viewModel.changeSort(
+                    when (l){
+                        0L -> SortingCriteria.POPULARITY
+                        1L -> SortingCriteria.PRICE_DOWN
+                        2L -> SortingCriteria.PRICE_UP
+                        else -> SortingCriteria.PRICE_DOWN
+                    }
+                )
+            }
         }
 
 
-        viewModel.catalogueItems.observe(viewLifecycleOwner){
-            adapter.submitList(it)
+        viewModel.apply {
+            catalogueItems.observe(viewLifecycleOwner) {
+                adapter.submitList(it)
+            }
         }
     }
 

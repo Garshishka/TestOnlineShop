@@ -24,7 +24,7 @@ class DbModule {
         .build()
 
     @Provides
-    fun provideFoodDao(
+    fun provideCatalogueDao(
         appDb: AppDb
     ): CatalogueItemDao = appDb.catalogueItemDao()
 }
