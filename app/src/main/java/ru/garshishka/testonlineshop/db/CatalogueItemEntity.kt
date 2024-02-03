@@ -24,6 +24,7 @@ data class CatalogueItemEntity(
     val description: String,
     val info: List<Info>,
     val ingredients: String,
+    val favorite: Boolean = false
 ) {
     fun toDto() = CatalogueItem(
         id,
@@ -35,7 +36,8 @@ data class CatalogueItemEntity(
         available,
         description,
         info,
-        ingredients
+        ingredients,
+        favorite
     )
 
     companion object {
@@ -54,7 +56,8 @@ data class CatalogueItemEntity(
                 dto.available,
                 dto.description,
                 dto.info,
-                dto.ingredients
+                dto.ingredients,
+                dto.favorite
             )
     }
 }

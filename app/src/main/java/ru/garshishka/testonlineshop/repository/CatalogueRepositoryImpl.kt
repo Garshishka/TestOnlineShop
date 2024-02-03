@@ -70,6 +70,14 @@ class CatalogueRepositoryImpl @Inject constructor(
         _catalogueItems.postValue(catalogue)
     }
 
+    override suspend fun favorite(id: String): Unit = withContext(Dispatchers.IO) {
+        val item = catalogueItemDao.getEntityById(id)
+        item?.let {
+            catalogueItemDao.updateItem(it.copy(favorite = !it.favorite))
+        }
+        println("a")
+    }
+
 
     private suspend fun readUrl(url: String): String = withContext(Dispatchers.IO) {
         val connection = URL(url).openConnection()

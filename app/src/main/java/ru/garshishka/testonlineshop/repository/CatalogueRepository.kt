@@ -10,4 +10,5 @@ interface CatalogueRepository {
     suspend fun downloadAll()
     suspend fun sortCatalogue(sortType: SortType)
     suspend fun filterCatalogue(filterType: FilterType)
+    suspend fun favorite(id: String)
 }

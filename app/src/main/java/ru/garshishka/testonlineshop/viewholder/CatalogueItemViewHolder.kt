@@ -11,10 +11,12 @@ import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.CardCatalogueElementBinding
 import ru.garshishka.testonlineshop.dto.CatalogueItem
 import ru.garshishka.testonlineshop.utils.ImagePagerAdapter
+import ru.garshishka.testonlineshop.utils.UserInteractionListener
 import ru.garshishka.testonlineshop.utils.getImageArrayForItem
 
 class CatalogueItemViewHolder(
-    private val binding: CardCatalogueElementBinding
+    private val binding: CardCatalogueElementBinding,
+    private val userInteractionListener: UserInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: CatalogueItem) {
         binding.apply {
@@ -52,17 +54,21 @@ class CatalogueItemViewHolder(
                 setIndicatorGap(resources.getDimension(R.dimen.small_indicator_gap_4dp))
                 setupWithViewPager(productImage)
             }
+            favorite.isChecked = item.favorite
+            favorite.setOnClickListener { userInteractionListener.onFavoriteClick(item.id)  }
         }
     }
 }
 
-class CatalogueItemAdapter() :
+class CatalogueItemAdapter(
+    private val userInteractionListener: UserInteractionListener
+) :
     ListAdapter<CatalogueItem, CatalogueItemViewHolder>(CatalogueItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogueItemViewHolder {
         val binding =
             CardCatalogueElementBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CatalogueItemViewHolder(binding)
+        return CatalogueItemViewHolder(binding, userInteractionListener)
     }
 
     override fun onBindViewHolder(holder: CatalogueItemViewHolder, position: Int) {

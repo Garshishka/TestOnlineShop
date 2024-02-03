@@ -2,8 +2,9 @@ package ru.garshishka.testonlineshop.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Upsert
+import androidx.room.Update
 
 @Dao
 interface CatalogueItemDao {
@@ -16,6 +17,12 @@ interface CatalogueItemDao {
     @Query("DELETE FROM catalogue_list")
     suspend fun clearTable()
 
-    @Upsert
+    @Insert
     suspend fun saveAll(list: List<CatalogueItemEntity>)
+
+    @Update
+    suspend fun updateItem(itemEntity: CatalogueItemEntity)
+
+    @Query("SELECT * FROM catalogue_list WHERE id = :entityId")
+    fun getEntityById(entityId: String): CatalogueItemEntity?
 }

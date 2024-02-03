@@ -14,8 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class CatalogueViewModel @Inject constructor(
     private val repository: CatalogueRepository,
-): ViewModel() {
-    val catalogueItems : LiveData<List<CatalogueItem>>
+) : ViewModel() {
+    val catalogueItems: LiveData<List<CatalogueItem>>
         get() = repository.catalogueItems
 
     init {
@@ -25,19 +25,23 @@ class CatalogueViewModel @Inject constructor(
     private fun load() = viewModelScope.launch {
         try {
             repository.downloadAll()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun changeSort(sortType: SortType) = viewModelScope.launch{
+    fun changeSort(sortType: SortType) = viewModelScope.launch {
         repository.sortCatalogue(sortType)
     }
 
-    fun changeFilter(filterType: FilterType) = viewModelScope.launch{
+    fun changeFilter(filterType: FilterType) = viewModelScope.launch {
+        repository.filterCatalogue(filterType)
+    }
+
+    fun favorite(id: String) = viewModelScope.launch {
         try {
-            repository.filterCatalogue(filterType)
-        }catch (e: Exception){
+            repository.favorite(id)
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

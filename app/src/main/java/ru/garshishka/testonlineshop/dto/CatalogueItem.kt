@@ -23,6 +23,7 @@ data class CatalogueItem(
     val info: List<Info>,
     @SerializedName("ingredients")
     val ingredients: String,
+    val favorite: Boolean = false,
 )
 
 data class Price(

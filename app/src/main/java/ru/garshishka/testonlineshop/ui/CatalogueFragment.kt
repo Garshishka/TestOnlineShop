@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentCatalogueBinding
+import ru.garshishka.testonlineshop.utils.UserInteractionListener
 import ru.garshishka.testonlineshop.utils.enums.FilterType
 import ru.garshishka.testonlineshop.utils.enums.SortType
 import ru.garshishka.testonlineshop.utils.enums.getFilterType
@@ -22,7 +23,14 @@ import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
 class CatalogueFragment : Fragment() {
     private var _binding: FragmentCatalogueBinding? = null
     private val viewModel : CatalogueViewModel by activityViewModels()
-    private val adapter = CatalogueItemAdapter()
+
+    private val userInteractionListener = object : UserInteractionListener{
+        override fun onFavoriteClick(id: String) {
+            viewModel.favorite(id)
+        }
+    }
+
+    private val adapter = CatalogueItemAdapter(userInteractionListener)
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
