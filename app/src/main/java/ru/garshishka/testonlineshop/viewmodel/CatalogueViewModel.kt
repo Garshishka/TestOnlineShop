@@ -7,7 +7,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.garshishka.testonlineshop.dto.CatalogueItem
 import ru.garshishka.testonlineshop.repository.CatalogueRepository
-import ru.garshishka.testonlineshop.utils.SortingCriteria
+import ru.garshishka.testonlineshop.utils.enums.FilterType
+import ru.garshishka.testonlineshop.utils.enums.SortType
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,8 +30,16 @@ class CatalogueViewModel @Inject constructor(
         }
     }
 
-    fun changeSort(sortingCriteria: SortingCriteria) = viewModelScope.launch{
-        repository.sortCatalogue(sortingCriteria)
+    fun changeSort(sortType: SortType) = viewModelScope.launch{
+        repository.sortCatalogue(sortType)
+    }
+
+    fun changeFilter(filterType: FilterType) = viewModelScope.launch{
+        try {
+            repository.filterCatalogue(filterType)
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 
 }

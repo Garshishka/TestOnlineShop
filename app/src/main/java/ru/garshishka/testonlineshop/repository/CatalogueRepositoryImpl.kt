@@ -10,8 +10,10 @@ import ru.garshishka.testonlineshop.db.CatalogueItemDao
 import ru.garshishka.testonlineshop.db.CatalogueItemEntity
 import ru.garshishka.testonlineshop.dto.CatalogueItem
 import ru.garshishka.testonlineshop.dto.Items
-import ru.garshishka.testonlineshop.utils.SortingCriteria
-import ru.garshishka.testonlineshop.utils.getComparator
+import ru.garshishka.testonlineshop.utils.enums.FilterType
+import ru.garshishka.testonlineshop.utils.enums.SortType
+import ru.garshishka.testonlineshop.utils.enums.getComparator
+import ru.garshishka.testonlineshop.utils.enums.getTag
 import java.io.InputStreamReader
 import java.net.URL
 import javax.inject.Inject
@@ -21,7 +23,7 @@ import javax.inject.Singleton
 class CatalogueRepositoryImpl @Inject constructor(
     private val catalogueItemDao: CatalogueItemDao
 ) : CatalogueRepository {
-    private var catalogueSort: SortingCriteria? = null
+    private var catalogueSort: SortType? = null
 
     private val _catalogueItems: MutableLiveData<List<CatalogueItem>> = getSortedItems()
     override val catalogueItems: LiveData<List<CatalogueItem>>
@@ -31,18 +33,16 @@ class CatalogueRepositoryImpl @Inject constructor(
 
         val result = MediatorLiveData<List<CatalogueItem>>()
 
-        val sourceLiveData = catalogueItemDao.getAll()
+        val sourceLiveData = catalogueItemDao.getAllLiveData()
         result.addSource(sourceLiveData) { itemList ->
-            val sortedList = itemList.map(CatalogueItemEntity::toDto)
-                .run { if (catalogueSort!= null) sortedWith(getComparator(catalogueSort!!)) else this }
+            val sortedList = entityListToSortedList(itemList)
             result.value = sortedList
         }
 
         return result
     }
 
-
-    override suspend fun downloadAll() {
+    override suspend fun downloadAll()  {
         val url = "https://run.mocky.io/v3/97e721a7-0a66-4cae-b445-83cc0bcf9010"
 
         val jsonString = readUrl(url)
@@ -52,12 +52,22 @@ class CatalogueRepositoryImpl @Inject constructor(
         catalogueItemDao.saveAll(catalogue.map(CatalogueItemEntity.Companion::fromDto))
     }
 
-    override suspend fun sortCatalogue(sortingCriteria: SortingCriteria) {
-        catalogueSort = sortingCriteria
-        val newSort: List<CatalogueItem> =
-            _catalogueItems.value?.sortedWith(getComparator(sortingCriteria))
+    override suspend fun sortCatalogue(sortType: SortType) = withContext(Dispatchers.IO) {
+        catalogueSort = sortType
+        val newSort =
+            _catalogueItems.value?.sortedWith(getComparator(sortType))
                 ?: listOf()
-        _catalogueItems.value = newSort
+        _catalogueItems.postValue(newSort)
+    }
+
+    override suspend fun filterCatalogue(filterType: FilterType) = withContext(Dispatchers.IO) {
+        val filterTag = filterType.getTag()
+        var catalogue: List<CatalogueItem> = entityListToSortedList(catalogueItemDao.getAll())
+
+        filterTag?.let { tag ->
+            catalogue = catalogue.filter { it.tags.contains(tag) }
+        }
+        _catalogueItems.postValue(catalogue)
     }
 
 
@@ -80,4 +90,9 @@ class CatalogueRepositoryImpl @Inject constructor(
             connection.getInputStream().close()
         }
     }
+
+    private fun entityListToSortedList(list: List<CatalogueItemEntity>): List<CatalogueItem> =
+        list.map(CatalogueItemEntity::toDto)
+            .run { if (catalogueSort != null) sortedWith(getComparator(catalogueSort!!)) else this }
+
 }

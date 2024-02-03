@@ -12,7 +12,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentCatalogueBinding
-import ru.garshishka.testonlineshop.utils.SortingCriteria
+import ru.garshishka.testonlineshop.utils.enums.FilterType
+import ru.garshishka.testonlineshop.utils.enums.SortType
+import ru.garshishka.testonlineshop.utils.enums.getFilterType
 import ru.garshishka.testonlineshop.viewholder.CatalogueItemAdapter
 import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
 
@@ -44,10 +46,12 @@ class CatalogueFragment : Fragment() {
             chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
                 if (checkedIds.isNotEmpty()) {
                     val selectedChip = group.findViewById<Chip>(checkedIds[0])
+                    viewModel.changeFilter(getFilterType(selectedChip.id))
                     selectedChip.isCloseIconVisible = true
                     selectedChip.setOnCloseIconClickListener {
                         selectedChip.isCloseIconVisible = false
                         group.clearCheck()
+                        viewModel.changeFilter(FilterType.ALL)
                     }
 
                     for (chipId in group.children.map { it.id }) {
@@ -65,10 +69,10 @@ class CatalogueFragment : Fragment() {
             sortSpinner.setOnItemClickListener { _, _, _, l ->
                 viewModel.changeSort(
                     when (l){
-                        0L -> SortingCriteria.POPULARITY
-                        1L -> SortingCriteria.PRICE_DOWN
-                        2L -> SortingCriteria.PRICE_UP
-                        else -> SortingCriteria.PRICE_DOWN
+                        0L -> SortType.POPULARITY
+                        1L -> SortType.PRICE_DOWN
+                        2L -> SortType.PRICE_UP
+                        else -> SortType.PRICE_DOWN
                     }
                 )
             }
