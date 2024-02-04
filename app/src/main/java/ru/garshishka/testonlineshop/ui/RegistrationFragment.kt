@@ -94,7 +94,7 @@ class RegistrationFragment : Fragment() {
                 saveStringToPrefs(requireContext(),"name",inputName.text.toString())
                 saveStringToPrefs(requireContext(),"surname",inputSurname.text.toString())
                 saveStringToPrefs(requireContext(),"phone",inputPhone.text.toString())
-                findNavController().navigate(R.id.action_registrationFragment_to_mainFragment)
+                (activity as? MainActivity)?.setActiveButtonMain()
             }
         }
     }

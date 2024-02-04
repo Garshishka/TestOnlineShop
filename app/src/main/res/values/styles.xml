@@ -54,4 +54,8 @@
         <item name="android:insetBottom">0dp</item>
         <item name="rippleColor">@color/grey</item>
     </style>
+    <style name="MenuText" parent="@style/TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/size_text_caption</item>
+    </style>
 </resources>

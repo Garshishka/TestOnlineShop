@@ -1,10 +1,7 @@
 package ru.garshishka.testonlineshop
 
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -39,13 +36,32 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.apply {
-            menuPanel = menu
-            buttonMain.setOnClickListener { changeFragment(MenuDestination.MAIN) }
-            buttonCatalogue.setOnClickListener { changeFragment(MenuDestination.CATALOGUE) }
-            buttonCart.setOnClickListener { changeFragment(MenuDestination.CART) }
-            buttonDiscounts.setOnClickListener { changeFragment(MenuDestination.DISCOUNTS) }
-            buttonProfile.setOnClickListener { changeFragment(MenuDestination.PROFILE) }
-
+            menuPanel = bottomMenuContainer
+            bottomNavigation.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.menu_main -> {
+                        findNavController(R.id.fragment_container).navigate(R.id.action_global_mainFragment)
+                        true
+                    }
+                    R.id.menu_catalogue -> {
+                        findNavController(R.id.fragment_container).navigate(R.id.action_global_catalogueFragment)
+                        true
+                    }
+                    R.id.menu_cart ->{
+                        findNavController(R.id.fragment_container).navigate(R.id.action_global_cartFragment)
+                        true
+                    }
+                    R.id.menu_discounts ->{
+                        findNavController(R.id.fragment_container).navigate(R.id.action_global_discountsFragment)
+                        true
+                    }
+                    R.id.menu_profile ->{
+                        findNavController(R.id.fragment_container).navigate(R.id.action_global_profileFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
     }
 
@@ -54,53 +70,17 @@ class MainActivity : AppCompatActivity() {
             menuPanel.isVisible = destination != R.id.registrationFragment
     }
 
-    private fun changeFragment(destination: MenuDestination) {
-        binding.apply {
-            val buttons =
-                listOf(buttonCart, buttonCatalogue, buttonMain, buttonDiscounts, buttonProfile)
-            buttons.forEach { changeButtonColors(it) }
-            val pressedButton = when (destination) {
-                MenuDestination.MAIN -> buttonMain
-                MenuDestination.CATALOGUE -> buttonCatalogue
-                MenuDestination.PROFILE -> buttonProfile
-                MenuDestination.CART -> buttonCart
-                MenuDestination.DISCOUNTS -> buttonDiscounts
-            }
-            changeButtonColors(pressedButton,true)
-        }
-        val destinationId = when (destination) {
-            MenuDestination.MAIN -> R.id.action_global_mainFragment
-            MenuDestination.CATALOGUE -> R.id.action_global_catalogueFragment
-            MenuDestination.PROFILE -> R.id.action_global_profileFragment
-            MenuDestination.CART -> R.id.action_global_cartFragment
-            MenuDestination.DISCOUNTS -> R.id.action_global_discountsFragment
-        }
-        findNavController(R.id.fragment_container).navigate(destinationId)
-    }
-
-    private fun changeButtonColors(button: Button, pinkColor: Boolean = false) {
-        val color =
-            if (pinkColor) resources.getColor(R.color.pink) else resources.getColor(R.color.dark_grey)
-        button.setTextColor(color)
-        val icon = button.compoundDrawables[1]
-        icon.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
-    }
-
     fun setToolbarTextViewText(text: String) {
         val textView = binding.toolbarTitle
         textView.text = text
     }
 
     fun setActiveButtonMain(){
-        changeButtonColors(binding.buttonMain,true)
+      binding.bottomNavigation.selectedItemId = R.id.menu_main
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
     }
-}
-
-enum class MenuDestination {
-    MAIN, CATALOGUE, PROFILE, CART, DISCOUNTS
 }
