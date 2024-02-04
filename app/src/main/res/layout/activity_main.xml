@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
 <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
@@ -19,7 +18,7 @@
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_icon"
-        style="@style/FavoriteButton"
+        style="@style/SmallButton"
         app:icon="@drawable/icon_back"
         app:iconTint="@color/black"
         />
@@ -40,6 +39,17 @@
         android:layout_gravity="center"
         android:textSize="16sp"
         android:fontFamily="@font/sf_pro_display_medium"/>
+
+    <Button
+        android:id="@+id/button_share"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_icon"
+        android:layout_marginEnd="14dp"
+        style="@style/SmallButton"
+        app:icon="@drawable/icon_share"
+        app:iconTint="@color/black"
+        android:layout_gravity="end"
+        />
 
 </androidx.appcompat.widget.Toolbar>
 

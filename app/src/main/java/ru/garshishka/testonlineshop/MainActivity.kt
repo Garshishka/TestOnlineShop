@@ -77,9 +77,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun updateUIVisibility(destination: Int) {
-        binding.bottomNavigation.isVisible = destination != R.id.registrationFragment
-        binding.buttonBack.isVisible =
-            destination == R.id.favoritesCatalogue || destination == R.id.productFragment
+        binding.apply {
+            bottomNavigation.isVisible = destination != R.id.registrationFragment
+            buttonBack.isVisible =
+                destination == R.id.favoritesCatalogue || destination == R.id.productFragment
+            buttonShare.isVisible = destination == R.id.productFragment
+        }
     }
 
     fun setToolbarTextViewText(text: String, sideText : Boolean = false) {

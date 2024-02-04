@@ -18,13 +18,15 @@
     <dimen name="discount_height">16dp</dimen>
     <dimen name="small_indicator_radius_2dp">2dp</dimen>
     <dimen name="small_indicator_gap_4dp">4dp</dimen>
+    <dimen name="big_indicator_radius_3dp">3dp</dimen>
+    <dimen name="big_indicator_gap_6dp">6dp</dimen>
     <dimen name="size_icon">24dp</dimen>
     <dimen name="product_image_big_386dp">368dp</dimen>
     <dimen name="product_image_big_340dp">340dp</dimen>
-    <dimen name="big_indicator_radius_3dp">3dp</dimen>
     <dimen name="size_text_large_title">20sp</dimen>
     <dimen name="size_text">12sp</dimen>
     <dimen name="size_text_price">24sp</dimen>
     <dimen name="menu_margin_43dp">43dp</dimen>
     <dimen name="size_profile_button_49dp">49dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
 </resources>

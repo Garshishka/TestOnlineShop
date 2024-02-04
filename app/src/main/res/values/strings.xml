@@ -38,4 +38,9 @@
     <string name="profile_name">%1$s %2$s</string>
     <string name="tab_products">Товары</string>
     <string name="tab_brands">Бренды</string>
+    <string name="label_description">Описание</string>
+    <string name="button_hide">Скрыть</string>
+    <string name="label_characteristics">Характеристики</string>
+    <string name="label_contents">Состав</string>
+    <string name="button_more">Подробнее</string>
 </resources>

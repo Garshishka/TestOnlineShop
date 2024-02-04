@@ -12,7 +12,6 @@ import ru.garshishka.testonlineshop.databinding.CardCatalogueElementBinding
 import ru.garshishka.testonlineshop.dto.CatalogueItem
 import ru.garshishka.testonlineshop.utils.ImagePagerAdapter
 import ru.garshishka.testonlineshop.utils.UserInteractionListener
-import ru.garshishka.testonlineshop.utils.getImageArrayForItem
 
 class CatalogueItemViewHolder(
     private val binding: CardCatalogueElementBinding,
@@ -48,14 +47,15 @@ class CatalogueItemViewHolder(
                     append(")")
                 }
             }
-            val images = getImageArrayForItem(item.id)
-            productImage.adapter = ImagePagerAdapter(itemView.context, images)
+            productImage.adapter =
+                ImagePagerAdapter(itemView.context, item, userInteractionListener)
             indicatorView.apply {
                 setIndicatorGap(resources.getDimension(R.dimen.small_indicator_gap_4dp))
                 setupWithViewPager(productImage)
             }
             favorite.isChecked = item.favorite
-            favorite.setOnClickListener { userInteractionListener.onFavoriteClick(item.id)  }
+            favorite.setOnClickListener { userInteractionListener.onFavoriteClick(item.id) }
+            card.setOnClickListener { userInteractionListener.onCardClick(item) }
         }
     }
 }

@@ -14,6 +14,7 @@ import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentProfileBinding
 import ru.garshishka.testonlineshop.utils.deleteFromSharedPreferences
 import ru.garshishka.testonlineshop.utils.getStringFromPrefs
+import ru.garshishka.testonlineshop.utils.getWordForAmount
 import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
 
 @AndroidEntryPoint
@@ -61,7 +62,7 @@ class ProfileFragment : Fragment() {
             favoritesAmount.observe(viewLifecycleOwner) {
                 if (it > 0) {
                     binding.favoriteAmount.isVisible = true
-                    binding.favoriteAmount.text = getWordForAmount(it)
+                    binding.favoriteAmount.text = getWordForAmount(it,"товар")
                 } else {
                     binding.favoriteAmount.isVisible = false
                 }
@@ -70,15 +71,4 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun getWordForAmount(number: Int): String {
-        val lastDigit = number % 10
-        val exceptions = setOf(11, 12, 13, 14)
-
-        return when {
-            number.toString().length>1 && number%100 in exceptions -> "$number товаров"
-            lastDigit == 1  -> "$number товар"
-            lastDigit in 2..4 -> "$number товара"
-            else -> "$number товаров"
-        }
-    }
 }

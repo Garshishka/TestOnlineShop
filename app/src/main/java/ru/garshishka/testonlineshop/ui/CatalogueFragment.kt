@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentCatalogueBinding
+import ru.garshishka.testonlineshop.dto.CatalogueItem
+import ru.garshishka.testonlineshop.ui.ProductFragment.Companion.itemArg
 import ru.garshishka.testonlineshop.utils.UserInteractionListener
 import ru.garshishka.testonlineshop.utils.enums.FilterType
 import ru.garshishka.testonlineshop.utils.enums.SortType
@@ -28,6 +31,12 @@ class CatalogueFragment : Fragment() {
     private val userInteractionListener = object : UserInteractionListener{
         override fun onFavoriteClick(id: String) {
             viewModel.favorite(id)
+        }
+
+        override fun onCardClick(item: CatalogueItem) {
+            findNavController().navigate(R.id.action_catalogueFragment_to_productFragment,
+                Bundle().apply
+                { itemArg = item })
         }
     }
 

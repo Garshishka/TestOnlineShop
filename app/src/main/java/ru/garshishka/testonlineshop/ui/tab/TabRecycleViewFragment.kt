@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.TabFragmentRecyclerviewBinding
+import ru.garshishka.testonlineshop.dto.CatalogueItem
+import ru.garshishka.testonlineshop.ui.ProductFragment.Companion.itemArg
 import ru.garshishka.testonlineshop.utils.UserInteractionListener
 import ru.garshishka.testonlineshop.viewholder.CatalogueItemAdapter
 import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
@@ -22,6 +26,12 @@ class TabRecycleViewFragment : Fragment() {
     private val userInteractionListener = object : UserInteractionListener {
         override fun onFavoriteClick(id: String) {
             viewModel.favorite(id)
+        }
+
+        override fun onCardClick(item: CatalogueItem) {
+            findNavController().navigate(R.id.action_favoritesCatalogue_to_productFragment,
+                Bundle().apply
+                { itemArg = item })
         }
     }
 
