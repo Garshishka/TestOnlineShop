@@ -5,28 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.garshishka.testonlineshop.MainActivity
 import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.FragmentFavoritesBinding
-import ru.garshishka.testonlineshop.utils.UserInteractionListener
-import ru.garshishka.testonlineshop.viewholder.CatalogueItemAdapter
-import ru.garshishka.testonlineshop.viewmodel.CatalogueViewModel
+import ru.garshishka.testonlineshop.ui.tab.TabPagerAdapter
 
 @AndroidEntryPoint
 class FavoritesCatalogue : Fragment() {
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : CatalogueViewModel by activityViewModels()
 
-    private val userInteractionListener = object : UserInteractionListener {
-        override fun onFavoriteClick(id: String) {
-            viewModel.favorite(id)
-        }
-    }
-
-    private val adapter = CatalogueItemAdapter(userInteractionListener)
+    private lateinit var tabAdapter : TabPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,20 +24,17 @@ class FavoritesCatalogue : Fragment() {
     ): View {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_favorites))
-        binding.apply {
-            catalogueItems.adapter = adapter
-        }
+        tabAdapter= TabPagerAdapter(requireContext(),childFragmentManager)
 
-        viewModel.apply {
-            favoriteItems.observe(viewLifecycleOwner) {
-                adapter.submitList(it)
-            }
+        binding.apply {
+            viewPager.adapter = tabAdapter
+            tabs.setupWithViewPager(viewPager)
         }
 
     }
