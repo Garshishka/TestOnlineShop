@@ -12,7 +12,7 @@ import ru.garshishka.testonlineshop.databinding.FragmentFavoritesBinding
 import ru.garshishka.testonlineshop.ui.tab.TabPagerAdapter
 
 @AndroidEntryPoint
-class FavoritesCatalogue : Fragment() {
+class FavoritesFragment : Fragment() {
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
 
@@ -29,7 +29,7 @@ class FavoritesCatalogue : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_favorites))
+        (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_favorites), true)
         tabAdapter= TabPagerAdapter(requireContext(),childFragmentManager)
 
         binding.apply {

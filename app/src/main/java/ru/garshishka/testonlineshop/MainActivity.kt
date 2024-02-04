@@ -1,7 +1,7 @@
 package ru.garshishka.testonlineshop
 
 import android.os.Bundle
-import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -14,7 +14,9 @@ import ru.garshishka.testonlineshop.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private lateinit var menuPanel : View
+
+    private lateinit var titleView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -26,9 +28,9 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHostFragment.navController
 
-        navController.addOnDestinationChangedListener{ _, destination, _ ->
-                updateUIVisibility(destination.id)
-            }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            updateUIVisibility(destination.id)
+        }
     }
 
     private fun setUpUi() {
@@ -36,47 +38,62 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.apply {
-            menuPanel = bottomMenuContainer
+            titleView = toolbarTitle
             bottomNavigation.setOnItemSelectedListener { item ->
-                when(item.itemId) {
+                when (item.itemId) {
                     R.id.menu_main -> {
                         findNavController(R.id.fragment_container).navigate(R.id.action_global_mainFragment)
                         true
                     }
+
                     R.id.menu_catalogue -> {
                         findNavController(R.id.fragment_container).navigate(R.id.action_global_catalogueFragment)
                         true
                     }
-                    R.id.menu_cart ->{
+
+                    R.id.menu_cart -> {
                         findNavController(R.id.fragment_container).navigate(R.id.action_global_cartFragment)
                         true
                     }
-                    R.id.menu_discounts ->{
+
+                    R.id.menu_discounts -> {
                         findNavController(R.id.fragment_container).navigate(R.id.action_global_discountsFragment)
                         true
                     }
-                    R.id.menu_profile ->{
+
+                    R.id.menu_profile -> {
                         findNavController(R.id.fragment_container).navigate(R.id.action_global_profileFragment)
                         true
                     }
+
                     else -> false
                 }
+            }
+            buttonBack.setOnClickListener {
+                findNavController(R.id.fragment_container).navigateUp()
             }
         }
     }
 
 
     private fun updateUIVisibility(destination: Int) {
-            menuPanel.isVisible = destination != R.id.registrationFragment
+        binding.bottomNavigation.isVisible = destination != R.id.registrationFragment
+        binding.buttonBack.isVisible =
+            destination == R.id.favoritesCatalogue || destination == R.id.productFragment
     }
 
-    fun setToolbarTextViewText(text: String) {
-        val textView = binding.toolbarTitle
-        textView.text = text
+    fun setToolbarTextViewText(text: String, sideText : Boolean = false) {
+        if (sideText){
+            binding.toolbarSidetitle.text = text
+            binding.toolbarTitle.text = ""
+        } else {
+            binding.toolbarSidetitle.text = ""
+            binding.toolbarTitle.text = text
+        }
     }
 
-    fun setActiveButtonMain(){
-      binding.bottomNavigation.selectedItemId = R.id.menu_main
+    fun setActiveButtonMain() {
+        binding.bottomNavigation.selectedItemId = R.id.menu_main
     }
 
     override fun onBackPressed() {

@@ -15,13 +15,31 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toTopOf="@id/fragment_container">
 
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_icon"
+        style="@style/FavoriteButton"
+        app:icon="@drawable/icon_back"
+        app:iconTint="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/toolbar_sidetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="28dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/sf_pro_display_medium"/>
+
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:fontFamily="@font/sf_pro_display_medium"/>
 
 </androidx.appcompat.widget.Toolbar>
 

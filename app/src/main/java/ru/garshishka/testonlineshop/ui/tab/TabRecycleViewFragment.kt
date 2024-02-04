@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
-import ru.garshishka.testonlineshop.MainActivity
-import ru.garshishka.testonlineshop.R
 import ru.garshishka.testonlineshop.databinding.TabFragmentRecyclerviewBinding
 import ru.garshishka.testonlineshop.utils.UserInteractionListener
 import ru.garshishka.testonlineshop.viewholder.CatalogueItemAdapter
@@ -40,7 +38,6 @@ class TabRecycleViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_favorites))
         binding.apply {
             catalogueItems.adapter = adapter
         }
