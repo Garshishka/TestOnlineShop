@@ -1,6 +1,7 @@
 package ru.garshishka.testonlineshop.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,11 @@ class CatalogueViewModel @Inject constructor(
 ) : ViewModel() {
     val catalogueItems: LiveData<List<CatalogueItem>>
         get() = repository.catalogueItems
+
+    private val _favoritesAmount = MutableLiveData<Int>()
+    val favoritesAmount: LiveData<Int>
+        get() = _favoritesAmount
+
 
     init {
         load()
@@ -46,5 +52,12 @@ class CatalogueViewModel @Inject constructor(
         }
     }
 
+    fun getFavoritesAmount() = viewModelScope.launch {
+        _favoritesAmount.postValue(repository.getAllFavorite())
+    }
+
+    fun clearFavorites() = viewModelScope.launch {
+        repository.clearFavorites()
+    }
 }
 

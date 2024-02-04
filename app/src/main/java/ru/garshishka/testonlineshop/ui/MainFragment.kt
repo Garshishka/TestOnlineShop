@@ -20,6 +20,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setToolbarTextViewText(requireContext().getString(R.string.fragment_main))
+        (activity as? MainActivity)?.setActiveButtonMain()
     }
 
 }

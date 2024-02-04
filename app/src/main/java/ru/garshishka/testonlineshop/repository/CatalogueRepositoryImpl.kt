@@ -75,7 +75,17 @@ class CatalogueRepositoryImpl @Inject constructor(
         item?.let {
             catalogueItemDao.updateItem(it.copy(favorite = !it.favorite))
         }
-        println("a")
+    }
+
+    override suspend fun getAllFavorite(): Int = withContext(Dispatchers.IO) {
+        return@withContext catalogueItemDao.getAllFavorite().size
+    }
+
+    override suspend fun clearFavorites() = withContext(Dispatchers.IO){
+        val favorites = catalogueItemDao.getAllFavorite()
+        favorites.forEach {
+            catalogueItemDao.updateItem(it.copy(favorite = false))
+        }
     }
 
 

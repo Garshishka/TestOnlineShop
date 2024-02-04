@@ -14,9 +14,6 @@ interface CatalogueItemDao {
     @Query("SELECT * FROM catalogue_list")
     fun getAll(): List<CatalogueItemEntity>
 
-    @Query("DELETE FROM catalogue_list")
-    suspend fun clearTable()
-
     @Insert
     suspend fun saveAll(list: List<CatalogueItemEntity>)
 
@@ -25,4 +22,7 @@ interface CatalogueItemDao {
 
     @Query("SELECT * FROM catalogue_list WHERE id = :entityId")
     fun getEntityById(entityId: String): CatalogueItemEntity?
+
+    @Query("SELECT * FROM catalogue_list WHERE favorite = 1")
+    fun getAllFavorite(): List<CatalogueItemEntity>
 }

@@ -90,6 +90,15 @@ class MainActivity : AppCompatActivity() {
         val textView = binding.toolbarTitle
         textView.text = text
     }
+
+    fun setActiveButtonMain(){
+        changeButtonColors(binding.buttonMain,true)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }
 
 enum class MenuDestination {

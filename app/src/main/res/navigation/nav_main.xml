@@ -47,5 +47,10 @@
         android:id="@+id/profileFragment"
         android:name="ru.garshishka.testonlineshop.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" /><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/>
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            />
+    </fragment><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/>
 </navigation>
