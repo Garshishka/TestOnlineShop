@@ -25,4 +25,7 @@ interface CatalogueItemDao {
 
     @Query("SELECT * FROM catalogue_list WHERE favorite = 1")
     fun getAllFavorite(): List<CatalogueItemEntity>
+
+    @Query("SELECT * FROM catalogue_list WHERE favorite = 1")
+    fun getAllFavoriteLiveData(): LiveData<List<CatalogueItemEntity>>
 }

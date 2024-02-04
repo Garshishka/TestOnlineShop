@@ -53,6 +53,9 @@ class ProfileFragment : Fragment() {
                 deleteFromSharedPreferences(requireContext(),"phone")
                 findNavController().navigate(R.id.action_profileFragment_to_registrationFragment)
             }
+            buttonFavorite.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_favoritesCatalogue)
+            }
         }
         viewModel.apply {
             favoritesAmount.observe(viewLifecycleOwner) {

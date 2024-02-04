@@ -18,6 +18,8 @@ class CatalogueViewModel @Inject constructor(
 ) : ViewModel() {
     val catalogueItems: LiveData<List<CatalogueItem>>
         get() = repository.catalogueItems
+    val favoriteItems: LiveData<List<CatalogueItem>>
+        get() = repository.favoriteItems
 
     private val _favoritesAmount = MutableLiveData<Int>()
     val favoritesAmount: LiveData<Int>

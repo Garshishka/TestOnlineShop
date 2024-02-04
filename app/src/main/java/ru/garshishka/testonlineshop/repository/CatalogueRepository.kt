@@ -7,6 +7,7 @@ import ru.garshishka.testonlineshop.utils.enums.SortType
 
 interface CatalogueRepository {
     val catalogueItems: LiveData<List<CatalogueItem>>
+    val favoriteItems: LiveData<List<CatalogueItem>>
     suspend fun downloadAll()
     suspend fun sortCatalogue(sortType: SortType)
     suspend fun filterCatalogue(filterType: FilterType)

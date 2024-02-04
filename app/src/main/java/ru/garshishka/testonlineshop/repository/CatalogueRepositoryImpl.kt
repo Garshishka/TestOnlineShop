@@ -3,6 +3,7 @@ package ru.garshishka.testonlineshop.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -28,6 +29,9 @@ class CatalogueRepositoryImpl @Inject constructor(
     private val _catalogueItems: MutableLiveData<List<CatalogueItem>> = getSortedItems()
     override val catalogueItems: LiveData<List<CatalogueItem>>
         get() = _catalogueItems
+    override val favoriteItems: LiveData<List<CatalogueItem>> = catalogueItemDao.getAllFavoriteLiveData().map{
+        it.map (CatalogueItemEntity::toDto)
+    }
 
     private fun getSortedItems(): MutableLiveData<List<CatalogueItem>> {
 

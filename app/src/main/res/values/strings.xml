@@ -6,6 +6,7 @@
     <string name="fragment_cart">Корзина</string>
     <string name="fragment_discounts">Акции</string>
     <string name="fragment_profile">Личный кабинет</string>
+    <string name="fragment_favorites">Избранное</string>
     <string name="text_input_name">Имя</string>
     <string name="text_input_surname">Фамилия</string>
     <string name="input_text_phone">Телефон</string>
