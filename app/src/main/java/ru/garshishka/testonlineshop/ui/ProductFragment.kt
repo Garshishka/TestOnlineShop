@@ -75,8 +75,6 @@ class ProductFragment : Fragment() {
                 feedback.text = buildString {
                     append(it.rating)
                     append(" · ")
-                    append(it.count.toString())
-                    append(" ")
                     append(getWordForAmount(it.count, "отзыв"))
                 }
             }
