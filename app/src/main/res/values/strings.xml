@@ -43,4 +43,5 @@
     <string name="label_characteristics">Характеристики</string>
     <string name="label_contents">Состав</string>
     <string name="button_more">Подробнее</string>
+    <string name="add_to_cart">Добавить в корзину</string>
 </resources>
