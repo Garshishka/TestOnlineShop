@@ -2,6 +2,8 @@
 
 Приложение, имитирующее онлайн магазин. Данные о товарах берутся с json файла онлайн.
 
+[.apk файл](https://github.com/Garshishka/TestOnlineShop/blob/master/app-debug.apk)
+
 ## Стек
 * Язык Kotlin
 * MVVM
