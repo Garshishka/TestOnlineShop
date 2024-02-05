@@ -43,7 +43,7 @@
 
         <com.zhpan.indicator.IndicatorView
             android:id="@+id/indicator_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/default_margin_16dp"
             app:vpi_slider_radius="@dimen/big_indicator_radius_3dp"
@@ -330,6 +330,76 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_contents"
             />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_button_cart"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="@dimen/big_margin_32dp"
+            android:layout_marginBottom="@dimen/small_margin_8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_hide_contents"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/ProfileButton"
+                android:backgroundTint="@color/pink"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+            <TextView
+                android:id="@+id/button_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin_16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/size_text_title2"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="549P"
+                />
+
+            <TextView
+                android:id="@+id/button_old_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin_8dp"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/size_text_caption"
+                android:textColor="@color/light_pink"
+                app:layout_constraintStart_toEndOf="@id/button_price"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="549P"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin_16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:background="@android:color/transparent"
+                android:text="@string/add_to_cart"
+                android:textSize="@dimen/size_text_title2"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

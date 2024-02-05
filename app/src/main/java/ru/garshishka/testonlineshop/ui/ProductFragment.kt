@@ -48,16 +48,19 @@ class ProductFragment : Fragment() {
         var contentsShow = false
         binding.apply {
             oldPrice.text = buildString {
-                append(item.price.discount.toString())
-                append(" ")
-                append(item.price.unit)
-            }
-            oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            price.text = buildString {
                 append(item.price.price.toString())
                 append(" ")
                 append(item.price.unit)
             }
+            oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            buttonOldPrice.text = oldPrice.text
+            buttonOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            price.text = buildString {
+                append(item.price.priceWithDiscount.toString())
+                append(" ")
+                append(item.price.unit)
+            }
+            buttonPrice.text = price.text
             discountAmount.text = buildString {
                 append("-")
                 append(item.price.discount.toString())
@@ -86,8 +89,6 @@ class ProductFragment : Fragment() {
             favorite.setOnClickListener { viewModel.favorite(item.id) }
             available.text = buildString {
                 append("Доступно для заказа ")
-                append(item.available)
-                append(" ")
                 append(getWordForAvailable(item.available))
             }
             brand.text = item.title

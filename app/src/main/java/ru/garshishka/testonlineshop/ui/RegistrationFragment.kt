@@ -16,7 +16,7 @@ import ru.garshishka.testonlineshop.databinding.FragmentRegistrationBinding
 import ru.garshishka.testonlineshop.utils.getStringFromPrefs
 import ru.garshishka.testonlineshop.utils.saveStringToPrefs
 import ru.tinkoff.decoro.MaskImpl
-import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
+import ru.tinkoff.decoro.parser.PhoneNumberUnderscoreSlotsParser
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
@@ -83,9 +83,13 @@ class RegistrationFragment : Fragment() {
                 }
             })
 
-            val slots = UnderscoreDigitSlotsParser().parseSlots("+7 ___ ___-__-__")
-            val formatWatcher: FormatWatcher = MaskFormatWatcher(MaskImpl.createTerminated(slots))
+            val slots = PhoneNumberUnderscoreSlotsParser().parseSlots("+7 ___ ___-__-__")
+            val mask = MaskImpl.createTerminated(slots)
+            mask.isShowingEmptySlots = true
+            mask.placeholder = 'X'
+            val formatWatcher: FormatWatcher = MaskFormatWatcher(mask)
             formatWatcher.installOn(inputPhone)
+
 
 
             inputPhone.addTextChangedListener { checkButtonStatus() }

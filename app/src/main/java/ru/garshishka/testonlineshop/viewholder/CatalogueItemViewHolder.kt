@@ -20,13 +20,13 @@ class CatalogueItemViewHolder(
     fun bind(item: CatalogueItem) {
         binding.apply {
             oldPrice.text = buildString {
-                append(item.price.discount.toString())
+                append(item.price.price.toString())
                 append(" ")
                 append(item.price.unit)
             }
             oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             price.text = buildString {
-                append(item.price.price.toString())
+                append(item.price.priceWithDiscount.toString())
                 append(" ")
                 append(item.price.unit)
             }
